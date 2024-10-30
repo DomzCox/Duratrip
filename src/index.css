@@ -4,5 +4,9 @@
 
 
 .input{
-  @apply border rounded border-teal-800;
+  @apply border rounded border-teal-800 p-2;
+}
+
+.nav-buttons{
+  @apply rounded bg-teal-800 p-1 text-slate-200 text-xs font-semibold;
 }

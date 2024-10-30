@@ -4,14 +4,15 @@ import { Outlet, Link } from 'react-router-dom'
 export default function Nav() {
   return (
     <>
-    <div className="container">
-        <div className="rounded">
-        <h1 className="font-semibold text-gray-500">DuraTrip</h1>
-        </div>
+    <div className="container mb-5">
+        
+        
+        
 
-        <div className=" flex justify-end gap-3">
-            <Link to="/">Home</Link>
-            <Link to="/trip">Trip</Link>
+        <div className=" flex justify-evenly gap-3 mt-3">
+        <h1 className="font-extrabold text-gray-500 text-2xl">DuraTrip</h1>
+            <Link className="nav-buttons" to="/">Dashboard</Link>
+            <Link className="nav-buttons" to="/trip">Trip Details</Link>
         </div>
     </div>
     <Outlet />

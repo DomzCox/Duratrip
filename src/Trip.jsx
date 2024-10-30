@@ -2,25 +2,33 @@
 export default function Trip(){
   return (
     <div className="container">
-      <h1 className="text-teal-700 text-2xl mb-5 mt-3">DomzTrip t1</h1>
+      
 
       <h2 className="text-center font-semibold text-teal-900 text-xl">
         Trip Details
       </h2>
 
-      <form className="flex flex-col">
-        <label htmlFor="">Item</label>
+      <form className="flex flex-col gap-2">
+        <label htmlFor="">Address</label>
         <input className="input" type="text" />
-        <label htmlFor="">Item2</label>
+        <label htmlFor="">Dopo off / Pick up</label>
+        <select className="input" type="text" >
+        <option>Drop</option>
+        <option>Prop</option>
+        </select>
+        <label htmlFor="">Order #</label>
         <input className="input" type="text" />
-        <label htmlFor="">Item2</label>
+        <label htmlFor="">Install</label>
+        <select className="input">
+          <option>Yes</option>
+          <option>No</option>
+         </select> 
+        <label htmlFor="">Distance</label>
         <input className="input" type="text" />
-        <label htmlFor="">Item2</label>
-        <input className="input" type="text" />
-        <label htmlFor="">Item2</label>
-        <input className="input" type="text" />
-        <button className="bg-teal-700 p-1 rounded-lg mt-5 text-xl">
-          submit
+        <label htmlFor="">Notes</label>
+        <textarea className="input" name="notes" type="text" />
+        <button className="bg-teal-700 p-1 rounded-lg mt-5 text-sm">
+          Add trip 
         </button>
       </form>
     </div>
