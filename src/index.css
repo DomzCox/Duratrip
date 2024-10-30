@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.input{
+  @apply border rounded border-teal-800;
+}
