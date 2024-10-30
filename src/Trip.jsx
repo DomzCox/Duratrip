@@ -1,6 +1,5 @@
-import React from "react";
 
-export default Tripdetails = () => {
+export default function Trip(){
   return (
     <div className="container">
       <h1 className="text-teal-700 text-2xl mb-5 mt-3">DomzTrip t1</h1>

@@ -1,14 +1,20 @@
-import React from 'react'
+
+import { Outlet, Link } from 'react-router-dom'
 
 export default function Nav() {
   return (
+    <>
     <div className="container">
+        <div className="rounded">
         <h1 className="font-semibold text-gray-500">DuraTrip</h1>
+        </div>
 
         <div className=" flex justify-end gap-3">
-            <button className="bg-slate-500">Home</button>
-            <button className="bg-slate-600">Set Trip</button>
+            <Link to="/">Home</Link>
+            <Link to="/trip">Trip</Link>
         </div>
     </div>
+    <Outlet />
+    </>
   )
 }
