@@ -30,5 +30,5 @@ export const notes = [
         note_date:"11/19/2024"
 
 
-    },
+    }
 ]

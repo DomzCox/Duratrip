@@ -13,6 +13,7 @@ export default function Nav() {
         <h1 className="font-extrabold text-gray-500 text-2xl">DuraTrip</h1>
             <Link className="nav-buttons" to="/">Dashboard</Link>
             <Link className="nav-buttons" to="/trip">Trip Details</Link>
+            <Link className="nav-buttons" to="/map">map</Link>
         </div>
     </div>
     <Outlet />
