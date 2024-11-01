@@ -13,9 +13,9 @@ export default function Nav() {
         <h1 className="font-extrabold text-gray-500 text-2xl">DuraTrip</h1>
             <Link className="nav-buttons" to="/">Dashboard</Link>
             <Link className="nav-buttons" to="/trip">Trip Details</Link>
-            <Link className="nav-buttons" to="/map">map</Link>
+           {/*  <Link className="nav-buttons" to="/map">map</Link>
             <Link className="nav-buttons" to="/prod">Products (test)</Link>
-            <Link className="nav-buttons" to="/fbase">Fbase (test)</Link>
+            <Link className="nav-buttons" to="/fbase">Fbase (test)</Link> */}
         </div>
     </div>
     <Outlet />
