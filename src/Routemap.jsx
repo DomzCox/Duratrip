@@ -27,7 +27,9 @@ export default function Routemap() {
           fullscreenControl={false}
           mapId={"ad539911b7eb2d6b"}
         >
+            
            <Direction />
+          
         </Map>
 
        
@@ -39,41 +41,63 @@ export default function Routemap() {
 function Direction() {
   const map = useMap();
   const routesLibrary = useMapsLibrary("routes");
-  const [directionsService, setDirectionsService] = useState();
-  const [directionsRenderer, setDirectionsRenderer] = useState();
+  
   const [routes, setRoutes] = useState([]);
   const [routeIndex, setRouteIndex] = useState(0);
+  const [routeSummary, setRouteSummary] = useState({})
+
   const selected = routes[routeIndex];
   const leg = selected?.legs[0]
 
   useEffect( () => {
+
     if(!routesLibrary || !map ) return;
     let ds = new routesLibrary.DirectionsService()
-    let dr =  new routesLibrary.DirectionsRenderer( {map} ) 
-    setDirectionsService( ds );
-    setDirectionsRenderer( dr );
+    let dr = new routesLibrary.DirectionsRenderer( {map} ) 
+   
    
    ds.route({
        origin:"4200 blankenship st, wichita falls, tx",
-       destination:"1600 Pennsylvania Avenue NW, Washington, DC 20500",
+       destination:"NRG Pkwy, Houston, TX 77054",
+       
        travelMode:google.maps.TravelMode.DRIVING,
        provideRouteAlternatives: true,
 
    }).then( (response) => {
+    
     dr.setDirections( response );
        setRoutes(response.routes);
+       setRouteSummary({
+        summary:response.routes[0].summary,
+        duration:response.routes[0].legs[0].duration.text,
+        distance:response.routes[0].legs[0].distance.text,
+        start_address:response.routes[0].legs[0].start_address,
+        end_address:response.routes[0].legs[0].end_address
+       })
        
-
+    /*  
+    console.log(response)  
+     console.log(response.routes[0].legs[0].duration.text)
+     console.log(response.routes[0].legs[0].distance.text)
+     console.log(response.routes[0].legs[0].start_address)
+     console.log(response.routes[0].legs[0].end_address)
+     console.log(response.routes[0].summary)
+     */
    });
 
 
   },[routesLibrary, map]);
 
   
+return(
+    <div className="text-sm text-gray-600">
+        Distance: {routeSummary.distance} | 
+        Duration: {routeSummary.duration} 
+        </div>
+)
 
-
-  
- 
-
+console.log(routeSummary)
 
 }
+
+

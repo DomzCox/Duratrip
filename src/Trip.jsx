@@ -7,6 +7,9 @@ export default function Trip() {
 
       <form className="flex flex-col gap-2 text-sm">
 
+        <label htmlFor="">Order #</label>
+        <input className="input" type="text" />
+
         <label htmlFor="">Sales person / POC</label>
         <select className="input" name="" id="">
           <option value="">Maria</option>
@@ -32,8 +35,7 @@ export default function Trip() {
           <option>Prop</option>
         </select>
 
-        <label htmlFor="">Order #</label>
-        <input className="input" type="text" />
+        
 
         <label htmlFor="">Install</label>
         <select className="input">
