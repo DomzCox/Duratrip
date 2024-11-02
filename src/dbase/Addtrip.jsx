@@ -24,7 +24,8 @@ export const addTripDetails = [{
     ],
     order_date:"",
     order_execution_time:"",
-    completion_notes:""
+    completion_notes:"",
+    route_status:"active,completed"
 
   },
 }];

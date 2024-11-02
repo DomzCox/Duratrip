@@ -4,11 +4,11 @@ export default function Nav() {
   return (
     <>
       <div className="container mb-5">
-        <span className="w-0.5">
-          <h1 className="font-extrabold text-gray-500 text-2xl">DuraTrip</h1>
+        <span className="w-0.5 ring-1">
+          <h1 className="font-extrabold text-gray-500  text-2xl">DuraTrip </h1>
         </span>
-
-        <div className=" flex justify-evenly gap-3 mt-3">
+      <span className="font-semibold text-gray-500">Route# 214 -3,753mi</span>
+        <div className=" flex gap-1 mt-3">
           <Link className="nav-buttons" to="/">
             Dashboard
           </Link>

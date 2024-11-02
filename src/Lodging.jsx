@@ -3,7 +3,7 @@ import { places } from "./dbase/places"
 
 export default function Lodging() {
   return (
-    <div>
+    <div className="mb-3">
          <h2 className="text-center mt-10 mb-10 font-xl text-gray-500 font-bold">Suggested places to stay on your trip</h2>
         <div className="places flex flex-row justify-evenly gap-3 mt-5 text-gray-500">
 

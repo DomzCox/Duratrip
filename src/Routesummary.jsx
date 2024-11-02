@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 function Routesummary() {
   return (
     <>
-      <span className="text-center">
-        <h1 className="font-bold text-gray-500 mb-10 mt-5">
-          Route #: 214 | Total Distance 3,753mi
-        </h1>
-      </span>
+     
 
      <div className="text-teal-600 p-2">
       <h2>Route summary</h2>
@@ -39,7 +35,7 @@ function Routesummary() {
           <p>Conf.Addr : 309 N I-70, Wimbledon, MI, 76524</p>
           <p>cust.notes : Use the back access to enter the building. No parking space in the front</p>
           <p className="mt-3">
-            <button className="bg-green-600 text-gray-50 p-1 rounded text-xs">Completed </button> 
+            <button className="bg-green-600 text-gray-50 p-1 rounded text-xs">Mark completed </button> 
             &nbsp;
             <button className="bg-orange-600 text-gray-50 p-1 rounded text-xs"> Add note</button>
           </p>
