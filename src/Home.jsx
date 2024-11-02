@@ -7,9 +7,10 @@ import Routesummary from "./Routesummary";
 function Home() {
   return (
     <div className="container">
-        <Routesummary />
-        <Routemap />
-        <Routenotes />      
+
+      <Routesummary />
+      <Routemap />
+        {/* <Routenotes />       */}
         <Lodging />
     </div>
   );

@@ -1,43 +1,36 @@
 export const salesReps = [
-   {
-    name:"Maria",
-    phone:"",
-    email:"",
-    order_ref_number:"",
-    role:""
-
-   },
-   {
-    name:"Crystal",
-    phone:"",
-    email:"",
-    order_ref_number:"",
-    role:""
-
-   },
-   {
-    name:"Nick",
-    phone:"",
-    email:"",
-    order_ref_number:"",
-    role:""
-
-   },
-   {
-    name:"Tony",
-    phone:"",
-    email:"",
-    order_ref_number:"",
-    role:""
-
-   },
-   {
-    name:"Devin",
-    phone:"",
-    email:"",
-    order_ref_number:""
-
-   },
-
-
-]
+  {
+    name: "Maria",
+    phone: "",
+    email: "",
+    role: "",
+  },
+  {
+    name: "Crystal",
+    phone: "",
+    email: "",
+    role: "",
+  },
+  {
+    name: "Nick",
+    phone: "",
+    email: "",
+    role: "",
+  },
+  {
+    name: "Tony",
+    phone: "",
+    email: "",
+    role: "",
+  },
+  {
+    name: "Devin",
+    phone: "",
+    email: "",
+  },
+  {
+    name: "Dwight",
+    phone: "",
+    email: "",
+  },
+];
