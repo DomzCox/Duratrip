@@ -1,6 +1,10 @@
 import Home from "./Home"
 import Nav from "./Nav"
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import {
+   createBrowserRouter,
+    createRoutesFromElements,
+     Route, RouterProvider 
+    } from 'react-router-dom';
 import Trip from "./Trip";
 import Routemap from "./Routemap";
 import Productdisplay from "./Productdisplay";

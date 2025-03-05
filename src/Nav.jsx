@@ -13,7 +13,7 @@ export default function Nav() {
             Dashboard
           </Link>
           <Link className="nav-buttons" to="/trip">
-            Add trip
+            New order
           </Link>
           {/*  <Link className="nav-buttons" to="/map">map</Link>
             <Link className="nav-buttons" to="/prod">Products (test)</Link>

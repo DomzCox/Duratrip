@@ -7,16 +7,23 @@ import {
   InfoWindow,
   Marker,
   useMarkerRef,
-  useMapsLibrary
+  useMapsLibrary,
+  
 } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
+import 'dotenv'
+
+
 
 export default function Routemap() {
   const position = { lat: 33.930828, lng: -98.484879 };
   const [markerRef, marker] = useMarkerRef();
  
+  
 
   return (
+
+ 
     <div className="mt-10">
       <h1 className="text-bold text-gray-400">Route Map</h1>
       <APIProvider apiKey={"AIzaSyAyGFva7f2VVuPrxat-lq-ZNtfJIcLk0WE"}>
@@ -74,7 +81,8 @@ function Direction() {
         start_address:response.routes[0].legs[0].start_address,
         end_address:response.routes[0].legs[0].end_address
        })
-       
+       console.log(response)
+       //console.log(response.routes[0].legs[0].steps.map((step)=> step.instructions))
     /*  
     console.log(response)  
      console.log(response.routes[0].legs[0].duration.text)
