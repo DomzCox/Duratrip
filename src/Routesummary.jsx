@@ -6,12 +6,14 @@ function Routesummary() {
      
 
      <div className="text-teal-600 p-2">
-      <h2>Route summary</h2>
+      <h2 className="font-bold">Route summary</h2>
      </div>
       <div className="text-sm p-2 mb-4 shadow-md bg-gray-100 text-gray-500">
         <Link to="/">
           <h3 className="font-semibold">DP12987 - Drop & instsall - Completed <span className="text-xs"> 11/02/2024 9:32am</span></h3>
+          <p>Sales Rep: Dale Stewart - Phone: 999-999-9999</p>
           <p>cust.name : Dr. Dolittle</p>
+          
           <p>cust.phone : 999-999-9999 | cust.mobile : 999-999-9999</p>
           <p>Conf.Addr : 309 N I-70, Wimbledon, MI, 76524</p>
           <p>cust.notes : Use the back access to enter the building. No parking space in the front</p>
@@ -30,6 +32,7 @@ function Routesummary() {
       <div className="text-sm p-2 mb-4 shadow-md bg-gray-100 text-gray-500">
         <Link to="/">
           <h3 className="font-semibold">DP12987 - Drop & instsall - <span className="text-green-600">In-progress</span></h3>
+          <p>Sales Rep: Tony Brumley - Phone: 999-999-9999</p>
           <p>cust.name : Dr. Dolittle</p>
           <p>cust.phone : 999-999-9999 | cust.mobile : 999-999-9999</p>
           <p>Conf.Addr : 309 N I-70, Wimbledon, MI, 76524</p>
