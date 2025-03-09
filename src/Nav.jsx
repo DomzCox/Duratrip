@@ -17,7 +17,8 @@ export default function Nav() {
           </Link>
           {/*  <Link className="nav-buttons" to="/map">map</Link>
             <Link className="nav-buttons" to="/prod">Products (test)</Link>
-            <Link className="nav-buttons" to="/fbase">Fbase (test)</Link> */}
+            <Link className="nav-buttons" to="/fbase">Fbase (test)</Link> 
+            */}
         </div>
       </div>
       <Outlet />
