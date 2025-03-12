@@ -9,7 +9,7 @@ function Home() {
     <div className="container">
 
       <Routesummary />
-      {/* <Routemap /> */}
+     {/*  <Routemap /> */}
         {/* <Routenotes />       */}
         <Lodging />
     </div>

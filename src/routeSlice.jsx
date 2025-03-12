@@ -12,34 +12,29 @@ import {
   addDoc 
   } from "firebase/firestore";
 import { firebaseConfig } from "./assets/firebaseConfig";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
-
+/*
+END OF IMPORTS
+*/
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth()
 
-export async function getRoutes() {
-  
-   let res = []
-    //const snapShot = await getDocs(collectiondata);
-    const snapShot = await getDocs(collection(db, "Trips"));
-    const response = await snapShot.docs.map((doc) => doc.data());
-    
-    //console.log("Response: ",response)
-    //route =  response
-    response.map( (re) => {
-      //console.log(re.sales_rep)
-      res.push(re)
-      route.push(re)
-     })
-     
-     //console.log("Route: ", route)
-     //console.log("RE: ", re)
-     return res;
-  }
+/*
+END OF FIREBASE INITILIZATIONS
+*/
 
 
-
-
+const signUp = () => {
+    createUserWithEmailAndPassword(auth, "nyron84@gmail.com", "password")
+.then( (cred) => {
+    console.log("User Created: ", cred.user)
+} ).catch( (err) => {
+    console.log(err.message)
+} )
+}
 
 
 
@@ -47,24 +42,39 @@ export async function getRoutes() {
 
 // Async action to add a new route
 export const addRoute = createAsyncThunk("routes/addRoute", async (payload, thunkAPI) => {
-   
+/*     const newRoute = {
+        
+        addr1:  payload.addr1,
+        addr2:  payload.addr2,
+        city:   payload.city,
+        state:  payload.state,
+        postal: payload.postal,
+        cust_name:payload.cust_name,
+        mobile:payload.mobile,
+        order_num:"DP-" + payload.order_num,
+        climb:payload.climbs,
+        phone:payload.phone,
+        sales_rep:payload.sale_rep,
+        service:payload.service,
+        stop_type:payload.stop_type,
+        notes:payload.notes,
+    } */
+  
+
 
 try{
-    console.log(payload)
-    const docRef = await addDoc(collection(db, "Trips"), payload);
-    console.log("Document written with ID: ", docRef.id);
-    return { id: docRef.id, ...payload };
+    
+    //const docRef = await addDoc(collection(db, payload.routenum), payload);
+    //const docRef = await setDoc(doc(collection(db, payload.routenum )), testDoc)
+    
+    //console.log("Document written with ID: ", docRef.id);
+    //return { id: docRef.id, ...payload };
 }catch (error) {
     console.error("Error adding route:", error);
     return thunkAPI.rejectWithValue(error.message); // Handle error in reducer
   }
-
-
-
     
-    return payload;
-    
-  });
+});
 
 
 
@@ -73,20 +83,36 @@ try{
 const initialState = {
    route:[],
    loading: false, 
-   error: null
+   error: null,
+   routeNum:'',
+   routeNumIsSet: false,
+   routeCurrentLocation:{
+    lat:33.930828,
+    lng:-98.484879
+   },
+   routeLocations: [],
+   notifications: 0
 }
+
 const routeSlice = createSlice({
     name: "routes",
     initialState,
     reducers: {
-
-        
-        // Get the new route information ans send it to the firestore database
-
+ 
+    // Get the new route information ans send it to the firestore database
       setRoutes: (state, action) => {
-            
             state.routes = action.payload; // Updates state with Firestore data
           },
+      setRouteNum: (state, action) =>{
+            state.routeNum = action.payload
+      }, 
+      updateRouteNumberStatus: (state) => {
+        // When the route number is set change the state of the 'routeNumIsSet' to true
+            state.routeNumIsSet = !state.routeNumIsSet
+      },  
+      logError: (state, action) => {
+            state.error = action.payload
+      } 
     },
     extraReducers: (builder) => {
         builder
@@ -104,7 +130,14 @@ const routeSlice = createSlice({
       },
 })
 
-export const { setRoutes } = routeSlice.actions
+
+
+export const { 
+    setRoutes, 
+    setRouteNum, 
+    updateRouteNumberStatus ,
+    logError
+} = routeSlice.actions
 
 // Real-time Firestore Listener
 export const listenForRoutes = () => (dispatch) => {
@@ -114,5 +147,5 @@ export const listenForRoutes = () => (dispatch) => {
       dispatch(setRoutes(routes)); // Updates Redux store when Firestore changes
     });
   };
-listenForRoutes()
+//* /listenForRoutes() */
 export default routeSlice.reducer

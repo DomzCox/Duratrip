@@ -8,7 +8,12 @@ import {
 import Trip from "./Trip";
 import Routemap from "./Routemap";
 import Productdisplay from "./Productdisplay";
-import Fbase from "./Fbase";
+
+import Login from "./Login";
+
+
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,7 +22,7 @@ const router = createBrowserRouter(
       <Route path="trip" element={<Trip />} />
       <Route path="map" element={<Routemap />} />
       <Route path="prod" element={<Productdisplay />} />
-      <Route path="fbase" element={<Fbase />} />
+      <Route path="login" element={<Login />} />
     </Route>
   ))
 

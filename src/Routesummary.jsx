@@ -10,12 +10,12 @@ import { listenForRoutes } from './routeSlice'
 function Routesummary() {
   const dispatch = useDispatch()
   const routes = useSelector( (state) => state.tripRoutes.routes )
-  console.log(routes)
+  const user = useSelector( (state) => state.user.user )
   useEffect(() => {
     dispatch(listenForRoutes()); // Listen for real-time Firestore changes
     
   }, [dispatch]);
- 
+
   return (
     <>
       <div className="text-teal-600 p-2">

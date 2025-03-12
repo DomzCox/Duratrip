@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { salesReps } from "./dbase/Saleslist";
 import { states } from "./dbase/States";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { listenForRoutes, addRoute } from "./routeSlice";
 
@@ -13,23 +13,25 @@ export default function Trip() {
  // const [routenumber, setRouteNumber] = useState(1);
   const [submitting, SetIssSubmitting] = useState(false);
   const submittingStyle = "bg-slate-700 text-slate-300 text-lg mb-4"
-
-
+  const routenum = useSelector( (state) => state.tripRoutes.routeNum )
+  const routenumset = useSelector( (state) => state.tripRoutes.routeNumIsSet )
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(listenForRoutes()); // Start listening for Firestore changes
   }, [dispatch]);
 
+  //Handel the form submission for adding a new order to the route
   const submitForm = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const payload = Object.fromEntries(formData);
+    payload.routenum = routenum
     
     dispatch(addRoute(payload))
  
-
+console.log("Payload before Dispatch: ", payload)
    
   };
 
@@ -42,21 +44,19 @@ export default function Trip() {
       <h3 className="font-bold text-base mt-2 mb-2">Order Information</h3>
 
       <form className="flex flex-col gap-2 text-sm" onSubmit={submitForm}>
-        <label className="form-label" htmlFor="route_num">
-          Route # 
-          <sup className="required-star">*</sup>{" "}
+      
+      <label className="form-label" htmlFor="order_num">
+          Order #
         </label>
-        <input className="input" type="text" name="route_num" />
+        <input className="input" placeholder="DP-" type="number" name="order_num" />
+
         <label className="form-label" htmlFor="cust_name">
           Customer Name:
           <sup className="required-star">*</sup>{" "}
         </label>
         <input className="input" type="text" name="cust_name" />
 
-        <label className="form-label" htmlFor="order_num">
-          Order #
-        </label>
-        <input className="input" type="text" name="order_num" />
+
 
         <label className="form-label" htmlFor="sales_rep">
           Sales person / POC
@@ -123,7 +123,7 @@ export default function Trip() {
         <input className="input" type="text" name="mobile" />
 
         <label className="form-label" htmlFor="stop_type">
-          Dopo off / Pick up
+          Drop off / Pick up
         </label>
         <select className="input" type="text" name="stop_type">
           <option value="drop">Drop</option>
@@ -157,7 +157,7 @@ export default function Trip() {
         <textarea className="input" name="notes" type="text" />
 
         <button
-          disabled={submitting}
+          disabled={!routenumset}
           className={
             submitting
               ? submittingStyle

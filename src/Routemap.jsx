@@ -9,14 +9,18 @@ import {
   useMarkerRef,
   useMapsLibrary,
   
+  
 } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
-import 'dotenv'
+import {useSelector} from 'react-redux'
 
 
 
 export default function Routemap() {
-  const position = { lat: 33.930828, lng: -98.484879 };
+
+  // Get the current location from state based on where we are at in our route
+  const { lat, lng } = useSelector( (state) => state.tripRoutes.routeCurrentLocation )
+  const position = { lat, lng };
   const [markerRef, marker] = useMarkerRef();
  
   
