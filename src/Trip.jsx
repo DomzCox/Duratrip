@@ -4,7 +4,7 @@ import { salesReps } from "./dbase/Saleslist";
 import { states } from "./dbase/States";
 import { useDispatch, useSelector } from "react-redux";
 
-import { listenForRoutes, addRoute } from "./routeSlice";
+import { listenForRoutes, addRoute } from "./slices/routeSlice";
 
 
 export default function Trip() {
@@ -31,7 +31,6 @@ export default function Trip() {
     
     dispatch(addRoute(payload))
  
-console.log("Payload before Dispatch: ", payload)
    
   };
 

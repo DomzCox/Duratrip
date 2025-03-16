@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import routeReducer from "./routeSlice"
-import userReducer from "./UserSlice"
+import routeReducer from "./slices/routeSlice"
+import userReducer from "./slices/userSlice"
 import orderReducer from './orderSlice'
-import singleOrderReducer from './SingleOrderSlice'
+import singleOrderReducer from './slices/SingleOrderSlice'
 
 export const store = configureStore({
     reducer: {

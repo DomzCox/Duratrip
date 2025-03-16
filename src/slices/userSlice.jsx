@@ -24,6 +24,7 @@ const userSlice = createSlice({
         
             state.user.username = action.payload.username
             state.user.password = action.payload.password
+            state.isLoggedIn = !state.isLoggedIn
            
         }
     }

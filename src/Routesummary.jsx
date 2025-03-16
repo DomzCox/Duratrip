@@ -3,18 +3,25 @@ import Pastroutes from "./components/Pastroutes";
 import Stageroutes from "./components/Stageroutes";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { listenForRoutes } from './routeSlice'
+import { listenForRoutes } from './slices/routeSlice';
+import { changeOrderStatus } from "./slices/SingleOrderSlice";
+import Changeorderstatus from "./Changeorderstatus";
+import Addnote from "./addNote"
 
 
 
 function Routesummary() {
   const dispatch = useDispatch()
   const routes = useSelector( (state) => state.tripRoutes.routes )
+  const orderStatus = useSelector( state => state.singleOrder.orderStatus)
   const user = useSelector( (state) => state.user.user )
   useEffect(() => {
     dispatch(listenForRoutes()); // Listen for real-time Firestore changes
     
   }, [dispatch]);
+
+
+
 
   return (
     <>
@@ -23,9 +30,11 @@ function Routesummary() {
      </div>
      
     {routes && routes.map( (route, key) => 
-      <div key={key} className="text-sm p-2 mb-4 shadow-md bg-gray-100 text-gray-500">
-        <Link to="/">
-          <h3 className="font-semibold">{} - Drop & instsall - Completed <span className="text-xs"> 11/02/2024 9:32am</span></h3>
+      <div key={key} className="relative text-sm p-2 mb-4 shadow-md bg-gray-100 text-gray-500">
+        {/* <Link to="/"> */}
+          
+          <Changeorderstatus />
+          <h3 className="font-semibold">{} - Status: {orderStatus} </h3>
           <p>Sales Rep: {route.sales_person} - Phone:{route.rep_phone}</p>
           <p>cust.name : {route.cust_name}</p>
           
@@ -40,9 +49,12 @@ function Routesummary() {
 
            <button className="bg-green-600 text-gray-50 p-1 rounded text-xs">Complete </button> 
             &nbsp; */}
-            <button className="bg-orange-600 text-gray-50 p-1 rounded text-xs"> Add note</button>
+           
           </p>
-        </Link>
+
+          {/* Component for adding notes to the order while working on the job*/}
+          <Addnote />
+        {/* </Link> */}
       </div>
 
 )}

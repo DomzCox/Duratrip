@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setRouteNum, updateRouteNumberStatus, logError } from "./routeSlice";
-import { userThunk } from "./UserSlice";
+import { setRouteNum, updateRouteNumberStatus, logError } from "./slices/routeSlice";
+import { userThunk } from "./slices/userSlice";
 
 
 export default function Setroutenumber(){

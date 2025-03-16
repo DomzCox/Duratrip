@@ -11,7 +11,7 @@ import {
   doc,
   addDoc 
   } from "firebase/firestore";
-import { firebaseConfig } from "./assets/firebaseConfig";
+import { firebaseConfig } from "../assets/firebaseConfig";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
