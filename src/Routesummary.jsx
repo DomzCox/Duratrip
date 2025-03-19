@@ -1,72 +1,109 @@
-import { Link } from "react-router-dom";
-import Pastroutes from "./components/Pastroutes";
-import Stageroutes from "./components/Stageroutes";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { listenForRoutes } from './slices/routeSlice';
-import { changeOrderStatus } from "./slices/SingleOrderSlice";
+import { listenForRoutes, updateRouteStatus } from "./slices/routeSlice";
 import Changeorderstatus from "./Changeorderstatus";
-import Addnote from "./addNote"
+import Stageroutes from "./components/Stageroutes";
+import Pastroutes from "./components/Pastroutes";
+import {
+  Truck,
+  Send,
+  MapPin,
+  PlayCircle,
+  CheckCircle,
+  XCircle,
+  User,
+  Phone,
+  ClipboardList,
+} from "lucide-react";
 
-
+const statusOptions = [
+  { label: "Loaded", icon: <Truck size={20} />, color: "text-blue-500" },
+  { label: "Enroute", icon: <Send size={20} />, color: "text-orange-500" },
+  { label: "Arrived", icon: <MapPin size={20} />, color: "text-green-500" },
+  { label: "Ongoing", icon: <PlayCircle size={20} />, color: "text-purple-500" },
+  { label: "Completed", icon: <CheckCircle size={20} />, color: "text-teal-500" },
+  { label: "Incomplete", icon: <XCircle size={20} />, color: "text-red-500" },
+];
 
 function Routesummary() {
-  const dispatch = useDispatch()
-  const routes = useSelector( (state) => state.tripRoutes.routes )
-  const orderStatus = useSelector( state => state.singleOrder.orderStatus)
-  const user = useSelector( (state) => state.user.user )
+  const dispatch = useDispatch();
+  const routes = useSelector((state) => state.tripRoutes.routes);
+
   useEffect(() => {
-    dispatch(listenForRoutes()); // Listen for real-time Firestore changes
-    
+    dispatch(listenForRoutes());
   }, [dispatch]);
 
-
-
+  const handleStatusChange = (routeId, newStatus) => {
+    dispatch(updateRouteStatus({ routeId, newStatus }));
+  };
 
   return (
-    <>
-      <div className="text-teal-600 p-2">
-      <h2 className="font-bold">Active Routes</h2>
-     </div>
-     
-    {routes && routes.map( (route, key) => 
-      <div key={key} className="relative text-sm p-2 mb-4 shadow-md bg-gray-100 text-gray-500">
-        {/* <Link to="/"> */}
-          
-          <Changeorderstatus />
-          <h3 className="font-semibold">{} - Status: {orderStatus} </h3>
-          <p>Sales Rep: {route.sales_person} - Phone:{route.rep_phone}</p>
-          <p>cust.name : {route.cust_name}</p>
-          
-          <p>cust.phone : {route.phone} | cust.mobile : {route.mobile}</p>
-          <p>Conf.Addr : {route.addr1 + route.addr2}, {route.city} {route.state}, {route.zip}</p>
-          <p>cust.notes : {route.notes}</p>
-          <p className="mt-3">
-           {/* 
-           
-            IF THE TASK IS ALREADY COMPLETED DO NOT SHOW THE COMPLETE BUTTON
-            NOTES WILL BE ABLE TO BE ADDED TO THE ROUTE-ORDER AFTER THE ACTUAL TASK IS COMPLETED (in case something was forgotten)
-
-           <button className="bg-green-600 text-gray-50 p-1 rounded text-xs">Complete </button> 
-            &nbsp; */}
-           
-          </p>
-
-          {/* Component for adding notes to the order while working on the job*/}
-          <Addnote />
-        {/* </Link> */}
+    <div className="max-w-5xl mx-auto p-6">
+      <div className="text-teal-600 p-4 text-center">
+        <h2 className="text-2xl font-extrabold">🚗 Active Routes</h2>
       </div>
 
-)}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {routes &&
+          routes.map((route) => (
+            <div
+              key={route.id}
+              className="relative p-6 bg-white shadow-lg rounded-2xl border border-gray-200 transition hover:shadow-xl"
+            >
+              {/* Responsive Status Selector */}
+              <div className="flex flex-wrap justify-center gap-2 mb-4 px-4 py-2 bg-gray-100 rounded-lg">
+                {statusOptions.map((status) => (
+                  <button
+                    key={status.label}
+                    className={`flex flex-col items-center gap-1 p-2 ${status.color} hover:scale-110 transition`}
+                    onClick={() => handleStatusChange(route.id, status.label)}
+                  >
+                    {status.icon}
+                    <span className="text-xs">{status.label}</span>
+                  </button>
+                ))}
+              </div>
 
+              {/* Header */}
+              <div className="flex justify-between items-center mb-3">
+                <h3 className="text-md font-semibold text-gray-700">
+                  <span className="text-blue-500">Status:</span> {route.status}
+                </h3>
+              </div>
 
-      <div>
-        
+              {/* Details */}
+              <div className="space-y-3 text-gray-600 text-sm">
+                <p className="flex items-center gap-2 bg-gray-100 p-2 rounded-lg">
+                  <User size={16} className="text-teal-500" />{" "}
+                  <span className="font-semibold">{route.sales_person}</span>
+                </p>
+
+                <p className="flex items-center gap-2 bg-gray-100 p-2 rounded-lg">
+                  <Phone size={16} className="text-blue-500" /> {route.rep_phone}
+                </p>
+
+                <p className="flex items-center gap-2 bg-gray-100 p-2 rounded-lg">
+                  <MapPin size={16} className="text-red-500" /> {route.addr1}{" "}
+                  {route.addr2}, {route.city} {route.state}, {route.zip}
+                </p>
+
+                <p className="flex items-center gap-2 bg-gray-100 p-2 rounded-lg">
+                  <ClipboardList size={16} className="text-purple-500" />{" "}
+                  {route.notes ? route.notes : "No notes added"}
+                </p>
+              </div>
+
+              {/* Buttons */}
+              <Changeorderstatus />
+            </div>
+          ))}
+      </div>
+
+      <div className="mt-8">
         <Stageroutes />
         <Pastroutes />
       </div>
-
-    </>
+    </div>
   );
 }
 

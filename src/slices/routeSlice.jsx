@@ -18,14 +18,15 @@ import { getStorage } from "firebase/storage";
 /*
 END OF IMPORTS
 */
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth()
+export const storage = getStorage(app)
 
 /*
 END OF FIREBASE INITILIZATIONS
 */
-
+//app.functions().httpsCallable('sayCall')
 
 const signUp = () => {
     createUserWithEmailAndPassword(auth, "nyron84@gmail.com", "password")
@@ -77,9 +78,6 @@ try{
 });
 
 
-
-
-
 const initialState = {
    route:[],
    loading: false, 
@@ -91,7 +89,8 @@ const initialState = {
     lng:-98.484879
    },
    routeLocations: [],
-   notifications: 0
+   notifications: 0,
+   completedOrders:0
 }
 
 const routeSlice = createSlice({
@@ -110,6 +109,10 @@ const routeSlice = createSlice({
         // When the route number is set change the state of the 'routeNumIsSet' to true
             state.routeNumIsSet = !state.routeNumIsSet
       },  
+      updateRouteStatus: (state) => {
+        // When the route number is set change the state of the 'routeNumIsSet' to true
+            state.routeNumIsSet = !state.routeNumIsSet
+      }, 
       logError: (state, action) => {
             state.error = action.payload
       } 
@@ -136,7 +139,8 @@ export const {
     setRoutes, 
     setRouteNum, 
     updateRouteNumberStatus ,
-    logError
+    logError,
+    updateRouteStatus
 } = routeSlice.actions
 
 // Real-time Firestore Listener

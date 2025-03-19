@@ -24,6 +24,9 @@ export default function Nav() {
           <Link className="nav-buttons" to="/trip">
             New order
           </Link>
+          <Link className="nav-buttons" to="/testnav">
+            Test Nav
+          </Link>
           <Link className="nav-buttons" to="/login">Login</Link>
           {/*  <Link className="nav-buttons" to="/map">map</Link>
             <Link className="nav-buttons" to="/prod">Products (test)</Link>

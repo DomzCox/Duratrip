@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faComment, faPlus, faPenNib, faCircleMinus, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import Addimage from "./Addimage";
 //import { byPrefixAndName } from '@awesome.me/kit-KIT_CODE/icons'
 
 import { useState } from "react";
@@ -79,7 +80,9 @@ export default function Addnote() {
             <input type="text" name="order_note" />
             <button className="bg-green-900 text-gray-400 text-lg"> + </button>
           </form>
+          <Addimage />
         </div>
+
       ) : (
         ""
       )}

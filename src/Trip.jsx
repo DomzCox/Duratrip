@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { salesReps } from "./dbase/Saleslist";
 import { states } from "./dbase/States";
 import { useDispatch, useSelector } from "react-redux";
-
+import { ToastContainer, toast } from 'react-toastify';
 import { listenForRoutes, addRoute } from "./slices/routeSlice";
 
 
@@ -30,8 +30,8 @@ export default function Trip() {
     payload.routenum = routenum
     
     dispatch(addRoute(payload))
- 
-   
+    toast.success("New order added to the route")
+   console.log("new order")
   };
 
   
@@ -166,6 +166,7 @@ export default function Trip() {
           {submitting ? <>Adding order to route...</> : <>Add to route</>}
         </button>
       </form>
+      <ToastContainer/>
     </div>
   );
 }
