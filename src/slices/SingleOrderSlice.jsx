@@ -2,9 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    orderID:'',
+    orderID:"",
     orderStatus:'Loaded',
-    orderNewNotes:''
+    orderNewNotes:[],
+    orderSalesPerson:{
+        name:"",
+        phone:""
+    },
+
+    orderAddress:{
+        streetName:"",
+        city:"",
+        state:"",
+        postal:0
+        
+       },
+    orderCompletedStatus:false
 }
 
 
@@ -23,7 +36,8 @@ const singleOrderSlice = createSlice({
         }
         
     }
-})
+});
+
 
 
 export const { addOrderNotes, changeOrderStatus } = singleOrderSlice.actions

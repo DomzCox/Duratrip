@@ -1,5 +1,5 @@
 import React from 'react'
-import { setUser } from './slices/userSlice'
+import { setUser, setLoginError } from './slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 //  Grab the user login information
 //  Check to see if the user entered the correct information
@@ -8,13 +8,21 @@ import { useDispatch, useSelector } from 'react-redux'
 export default function Login() {
     const dispatch = useDispatch()
     const user = useSelector( (state)=> state.user )
+    const loginError = useSelector( (state)=> state.user.loginError )
 
     const handleLogin = (e) => {
         e.preventDefault()
         const loginData = new FormData(e.target)
         const login = Object.fromEntries(loginData)
-        dispatch(setUser(login))
-        console.log(user.isLoggedIn)
+
+        if(login.username == "" || login.password ==""){
+          dispatch(setLoginError("Login information cannot be empty!"))
+        }else{
+          dispatch(setUser(login))
+          dispatch(setLoginError(""))
+        }
+
+      
     }
 
   return (
@@ -24,6 +32,7 @@ export default function Login() {
             <input className="input" name="username" type="text" autoComplete=''/>
             <label htmlFor="">Password</label>
             <input className="input" name="password" type="password" autoComplete='current-password' />
+            <p>{ loginError }</p>
             <button className="bg-teal-700 p-1 rounded-lg mt-2 font-bold text-md mb-4 text-gray-200">Login</button>
         </form>
 

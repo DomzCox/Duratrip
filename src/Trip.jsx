@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { salesReps } from "./dbase/Saleslist";
 import { states } from "./dbase/States";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { listenForRoutes, addRoute } from "./slices/routeSlice";
 
 
@@ -28,6 +28,8 @@ export default function Trip() {
     const formData = new FormData(e.target);
     const payload = Object.fromEntries(formData);
     payload.routenum = routenum
+    payload.routestatus = "loaded"
+
     
     dispatch(addRoute(payload))
     toast.success("New order added to the route")
@@ -55,10 +57,8 @@ export default function Trip() {
         </label>
         <input className="input" type="text" name="cust_name" />
 
-
-
         <label className="form-label" htmlFor="sales_rep">
-          Sales person / POC
+          Sales person
         </label>
         <select className="input" name="sales_rep">
 
@@ -72,7 +72,6 @@ export default function Trip() {
         
           <h3 className="font-bold text-base mt-2 mb-2">Customer Address</h3>
         
-
                   <label className="form-label" htmlFor="addr1">
                     Address Line 1.
                   </label>
@@ -105,16 +104,14 @@ export default function Trip() {
             Postal Code
           </label>
           <input className="input" type="text" name="postal" />
-
-
-        
+      
           <h3 className="font-bold text-base mt-2 mb-2">Preferred Phone Contact</h3>
       
 
         <label className="form-label" htmlFor="phone">
           Primary Contact Phone
         </label>
-        <input className="input" type="text" name="phone" />
+        <input className="input" type="tel" placeholder="123-456-7891" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
 
         <label className="form-label" htmlFor="mobile">
           Other Contact Phone
@@ -136,8 +133,9 @@ export default function Trip() {
         </label>
         <select className="input" name="service">
          
-          <option value="All 3">Un-install + Install + pickup</option>
+          <option value="all-3">Un-install + Install + pickup</option>
           <option value="pickup">Pickup + Install</option>
+          <option value="deliver-install">Deliver & Install</option>
         </select>
 
         <label className="form-label" htmlFor="climbs">
@@ -147,7 +145,7 @@ export default function Trip() {
           <option value="none">None</option>
           <option value="elevator">Elevator</option>
           <option value="stairs">Stairs</option>
-          <option value="stairs">Ramp</option>
+          <option value="ramps">Ramp</option>
         </select>
 
         <label className="form-label mt-4 font-bold" htmlFor="notes">
@@ -166,7 +164,7 @@ export default function Trip() {
           {submitting ? <>Adding order to route...</> : <>Add to route</>}
         </button>
       </form>
-      <ToastContainer/>
+      
     </div>
   );
 }

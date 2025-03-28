@@ -60,9 +60,9 @@ export const addRoute = createAsyncThunk("routes/addRoute", async (payload, thun
         stop_type:payload.stop_type,
         notes:payload.notes,
     } */
+   console.log("Payload: ", payload)
+  console.log(thunkAPI)
   
-
-
 try{
     
     //const docRef = await addDoc(collection(db, payload.routenum), payload);
@@ -70,6 +70,7 @@ try{
     
     //console.log("Document written with ID: ", docRef.id);
     //return { id: docRef.id, ...payload };
+
 }catch (error) {
     console.error("Error adding route:", error);
     return thunkAPI.rejectWithValue(error.message); // Handle error in reducer
@@ -81,16 +82,30 @@ try{
 const initialState = {
    route:[],
    loading: false, 
-   error: null,
-   routeNum:'',
+   routeErrors: null,
+   routeNum:0,
    routeNumIsSet: false,
+
+   prevAddress:{
+    lat:0.0,
+    long:0.0
+   },
+
    routeCurrentLocation:{
     lat:33.930828,
     lng:-98.484879
    },
+  
+   routeNextLocation:{
+    lat:33.930828,
+    lng:-98.484879
+   },
+
    routeLocations: [],
    notifications: 0,
-   completedOrders:0
+   completedOrders:0,
+   allOrdersCompleted:false
+
 }
 
 const routeSlice = createSlice({

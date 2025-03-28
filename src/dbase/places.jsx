@@ -1,6 +1,6 @@
 export const places = [
     {
-        name:"Holiday Inn Express",
+        name:"Comfort Inns & Suits",
         address:"4712 Meddow Rd",
         city:"Culpepper",
         state:"VA",

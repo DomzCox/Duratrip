@@ -16,7 +16,7 @@ function Pastroutes() {
       <h2 className="font-semibold text-lg mb-5">Past Routes</h2>
 
       <div className="flex flex-col gap-5 md:flex-row">
-        <div className="border p-4 rounded-lg w-full md:w-64">
+        <div className="border p-4 rounded-lg w-full">
           <h4 className="mb-4 font-semibold">Route #: 12345</h4>
 
           <div className="flex flex-wrap gap-2">
